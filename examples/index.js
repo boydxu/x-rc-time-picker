@@ -3,9 +3,9 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import 'rc-time-picker/assets/index.less';
 
-const TimePickerRange = TimePicker.TimePickerRange
+// const TimePickerRange = TimePicker.TimePickerRange
 
 ReactDom.render(
-  <TimePicker style={{ margin: 100}}/>,
+  <TimePicker style={{ margin: 100 }} range/>,
   document.getElementById('__react-content')
 );

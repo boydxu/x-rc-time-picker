@@ -36,11 +36,9 @@
     "rc-tools": "6.x",
     "rc-util": "^4.0.2",
     "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react-dom": "^16.0.0",
+    "eslint-config-react-app": "^2.1.0"
   },
-  "pre-commit": [
-    "lint"
-  ],
   "dependencies": {
     "babel-runtime": "6.x",
     "classnames": "2.x",

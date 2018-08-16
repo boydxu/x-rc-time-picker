@@ -1,9 +1,3 @@
-import _extends from 'babel-runtime/helpers/extends';
-import TimePicker from './TimePicker'
-import TimePickerRange from './TimePickerRange'
+import TimePicker from './TimePicker';
 
-_extends(TimePicker,{
-  TimePickerRange
-})
-
-export default TimePicker
+export default TimePicker;

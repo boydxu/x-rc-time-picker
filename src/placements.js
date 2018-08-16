@@ -23,6 +23,6 @@ const placemoment = {
   bottomLeft: {
     points: ['tl', 'bl'],
   },
-}
+};
 
-export default placemoment
+export default placemoment;
