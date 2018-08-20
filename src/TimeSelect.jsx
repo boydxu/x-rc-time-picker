@@ -106,7 +106,7 @@ export class TimeSelect extends Component {
   }
   render() {
     const { multiple, autoFocus } = this.props;
-    const time = this.props.value;
+    const time = moment(this.props.value);
     const hour = time.hour();
     const minute = time.minute();
     const second = time.second();

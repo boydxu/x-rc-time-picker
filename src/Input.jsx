@@ -9,46 +9,53 @@ export class Input extends Component {
     prefixCls: PropTypes.string,
     formatStr: PropTypes.string,
   }
-  static defaultProps = {
-    value: [1, 2, 3],
+  // static defaultProps = {
+  //   value: [1, 2, 3],
+  // }
+  renderTimeTag = (value) => {
+    const { formatStr, range } = this.props;
+    if (range) {
+      return value.map(v =>
+        <span key={v}>
+          {`${v.startTime.format(formatStr)}~${v.endTime.format(formatStr)}`}
+        </span>
+      );
+    } else {
+      return value.map(v =>
+        <span key={v}>
+          {`${v.format(formatStr)}`}
+        </span>
+      );
+    }
+  }
+  renderTimeStr = (value) => {
+    const { formatStr, range } = this.props;
+    if (range) {
+      return (
+        <span>
+          {`${value.startTime.format(formatStr)}~${value.endTime.format(formatStr)}`}
+        </span>
+      );
+    } else {
+      return (
+        <span>
+          {`${value.format(formatStr)}`}
+        </span>
+      );
+    }
   }
   render() {
-    const { multiple, value, prefixCls, formatStr } = this.props;
-
+    const { multiple, value, prefixCls, formatStr, range } = this.props;
     return (
       <div className={classnames(
-        `${prefixCls}-selection`,
-        multiple ? `${prefixCls}-selection-multiple` : `${prefixCls}-selection-single`
-      )}
-      >
+        `${prefixCls}-selection`, multiple ? `${prefixCls}-selection-multiple` : `${prefixCls}-selection-single`
+      )}>
         <div className={`${prefixCls}-selection__rendered`}>
           {
-            multiple && value &&
-            (
-              <span>
-                {
-                  value.hasOwnProperty('startTime') ?
-                    `${value.startTime.format(formatStr)}~${value.endTime.format(formatStr)}` :
-                    value.format(formatStr)
-                }
-              </span>
-            )
+            multiple && value && this.renderTimeTag(value)
           }
           {
-            multiple && value && value.map && value.map(time => {
-              return (
-                <span>
-                  {
-                    time.hasOwnProperty('startTime') ?
-                      `${time.startTime.fromat(formatStr)}~${time.endTime.format(formatStr)}` :
-                      time.format(formatStr)
-                  }
-                </span>
-              );
-            })
-          }
-          {
-            !multiple && value && value.format && value.format(formatStr)
+            !multiple && value && this.renderTimeStr(value)
           }
         </div>
       </div>

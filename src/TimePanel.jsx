@@ -15,10 +15,21 @@ export class TimePanel extends Component {
   }
   constructor(props) {
     super(props);
-    this.state = {
-      startTime: moment(),
-      endTime: moment(),
-    };
+    if (props.initValue) {
+      if (props.range) {
+        this.state = props.initValue;
+      } else {
+        this.state = {
+          startTime: props.initValue,
+          endTime: null
+        };
+      }
+    } else {
+      this.state = {
+        startTime: moment(),
+        endTime: props.range ? moment() : null
+      };
+    }
   }
   onOk = () => {
     const { range } = this.props;
@@ -36,7 +47,7 @@ export class TimePanel extends Component {
   }
   render() {
     const { multiple, destroyPopupOnHide, style, popupStyle, getPopupContainer, placement, prefixCls, range } = this.props;
-    const { startTime, endTime } = this.state;
+    const { startTime, endTime } = this.state;    
     return (
       <div className={`${prefixCls}-dropdown`}>
         <TimeSelect
